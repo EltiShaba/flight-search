@@ -38,8 +38,8 @@ export interface FlightFormData {
 
 export interface GetFlightsProps {
   token: string | null;
-  departureAirport: string;
-  destinationAirport: string;
+  departureIataCode: string;
+  destinationIataCode: string;
   departureDate: Date | null;
   returnDate?: Date | null;
   selectedCabin: string;

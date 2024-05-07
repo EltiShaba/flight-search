@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.background-styling {
+    background-color: pink;
+}
+
+.main-bg {
+    background-image: url('../src/images/airline-travel-background-vector-44892802.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}

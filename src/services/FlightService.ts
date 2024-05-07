@@ -1,11 +1,11 @@
 import { GetFlightsProps } from "../types/types";
 
-export const getFlights = ({
+export const getFlights = async ({
   token,
-  departureAirport,
-  destinationAirport,
   departureDate,
   returnDate,
+  departureIataCode,
+  destinationIataCode,
   selectedCabin,
   numberOfTravelers,
 }: GetFlightsProps) => {
@@ -14,8 +14,8 @@ export const getFlights = ({
     originDestinations: [
       {
         id: "1",
-        originLocationCode: departureAirport,
-        destinationLocationCode: destinationAirport,
+        originLocationCode: departureIataCode,
+        destinationLocationCode: destinationIataCode,
         departureDateTimeRange: {
           date: departureDate,
           time: "10:00:00",
@@ -26,7 +26,7 @@ export const getFlights = ({
       {
         id: "1",
         travelerType: "ADULT",
-        numberOfTravelers,
+        // numberOfTravelers,
       },
     ],
     sources: ["GDS"],
@@ -35,7 +35,7 @@ export const getFlights = ({
       flightFilters: {
         cabinRestrictions: [
           {
-            cabin: selectedCabin,
+            cabin: "BUSINESS",
             coverage: "MOST_SEGMENTS",
             originDestinationIds: ["1"],
           },
@@ -53,9 +53,17 @@ export const getFlights = ({
     headers: myHeaders,
     body: JSON.stringify(searchParams),
   };
-
-  fetch("https://test.api.amadeus.com/v2/shopping/flight-offers", requestOptions)
-    .then((response) => response.json())
-    .then((result) => console.log("result", result))
-    .catch((error) => console.error(error));
+  
+  try {
+    const response = await fetch("https://test.api.amadeus.com/v2/shopping/flight-offers", requestOptions);
+    if (!response.ok) {
+      throw new Error('Failed to fetch flight offers');
+    }
+    const result = await response.json();
+    console.log("resultssssssssss", result);
+    return result;
+  } catch (error: any) {
+    console.error(error);
+    throw new Error(`Error fetching flight offers: ${error.message}`);
+  }
 };
