@@ -7,8 +7,9 @@ export const getFlights = async ({
   departureIataCode,
   destinationIataCode,
   selectedCabin,
-  numberOfTravelers,
+  travelerType,
 }: GetFlightsProps) => {
+  
   const searchParams = {
     currencyCode: "USD",
     originDestinations: [
@@ -25,8 +26,7 @@ export const getFlights = async ({
     travelers: [
       {
         id: "1",
-        travelerType: "ADULT",
-        // numberOfTravelers,
+        travelerType: travelerType,
       },
     ],
     sources: ["GDS"],
@@ -35,7 +35,7 @@ export const getFlights = async ({
       flightFilters: {
         cabinRestrictions: [
           {
-            cabin: "BUSINESS",
+            cabin: selectedCabin,
             coverage: "MOST_SEGMENTS",
             originDestinationIds: ["1"],
           },
@@ -60,10 +60,8 @@ export const getFlights = async ({
       throw new Error('Failed to fetch flight offers');
     }
     const result = await response.json();
-    console.log("resultssssssssss", result);
     return result;
   } catch (error: any) {
-    console.error(error);
     throw new Error(`Error fetching flight offers: ${error.message}`);
   }
 };

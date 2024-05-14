@@ -8,16 +8,15 @@ const initialState: FlightSearchResult = {
   data: [],
 };
 
-const FlightSearchResultSlice = createSlice({
+const flightSearchResultSlice = createSlice({
   name: 'flightSearchResult',
   initialState,
   reducers: {
     setFlightSearchResult: (state, action: PayloadAction<object[]>) => {
-        console.log('action', action)
-        state = action.payload.data;
+      state.data = action.payload.data;
     },
   },
 });
 
-export const { setFlightSearchResult } = FlightSearchResultSlice.actions;
-export default FlightSearchResultSlice;
+export const { setFlightSearchResult } = flightSearchResultSlice.actions;
+export default flightSearchResultSlice;

@@ -1,16 +1,12 @@
 import React, { useCallback, useEffect, useState } from "react";
-import TabButton from "../elements/buttons/TabButton";
+import TabButton from "../../components/elements/buttons/TabButton";
 import "react-datepicker/dist/react-datepicker.css";
-import { FlightSearchProps } from "../../types/types"; // Create types.ts file for types
 import { fetchAirports } from "../../services/AirportApiService";
 import { useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
 import useDebounce from "../../utils/custom-hooks";
-import DatePicker from "../elements/DatePicker";
-import InputWithDropdown from "../elements/input/InputWithDropdown";
-import Input from "../elements/input/Input";
-import Button from "../elements/buttons/SearchButton";
-import { getFlights } from "../../services/FlightService";
+import DatePicker from "../../components/elements/DatePicker";
+import InputWithDropdown from "../../components/elements/input/InputWithDropdown";
 import { useDispatch } from "react-redux";
 import { setData } from "../../store/features/flightSearchSlice";
 import { Link } from "react-router-dom";

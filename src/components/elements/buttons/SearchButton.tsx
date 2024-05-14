@@ -1,5 +1,4 @@
 import React from 'react';
-import { getFlights } from '../../../services/FlightService';
 interface ButtonProps {
   onClick: () => void;
   disabled: boolean;

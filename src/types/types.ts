@@ -18,23 +18,34 @@ export interface FlightFormData {
   numberOfTravelers: number;
 }
 
-// export interface FindFlightService {
-//   originDestinations: {
-//       id: string;
-//       originLocationCode: string;
-//       destinationLocationCode: string;
-//       departureDateTime: {
-//           date: string;
-//           time: string;
-//       };
-//   }[];
-//   travelers: {
-//       id: string;
-//       travelerType: string;
-//   }[];
-//   sources: string[];
-// }
-
+export interface FlightData {
+  meta: {
+    count: number;
+  };
+  data: {
+    itineraries: {
+      segments: object[]
+    }[];
+    id: string;
+  }[];
+  dictionaries: {
+    locations: {
+      [key: string]: {
+        cityCode: string;
+        countryCode: string;
+      };
+    };
+    aircraft: {
+      [key: string]: string;
+    };
+    currencies: {
+      [key: string]: string;
+    };
+    carriers: {
+      [key: string]: string;
+    };
+  };
+}
 
 export interface GetFlightsProps {
   token: string | null;
@@ -43,7 +54,5 @@ export interface GetFlightsProps {
   departureDate: Date | null;
   returnDate?: Date | null;
   selectedCabin: string;
-  numberOfTravelers: number;
+  travelerType: string;
 }
-
-// Add more types as needed for other components and services

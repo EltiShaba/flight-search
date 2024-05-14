@@ -1,6 +1,6 @@
 // FlightSearchContainer.tsx
 import React, { useState, useEffect } from 'react';
-import FlightSearch from '../../components/FlightSearch/FlightSearch';
+import FlightSearch from '../../pages/FlightSearch/FlightSearch';
 import { Airport } from '../../types/types'; // Create types.ts file for types
 import { fetchAirports } from '../../services/AirportApiService'; // Implement AirportApiService
 
@@ -22,10 +22,7 @@ const FlightSearchContainer: React.FC = () => {
     fetchAirportData();
   }, []);
 
-  // Function to handle flight search
   const handleSearch = (formData: any) => {
-    // Implement flight search functionality
-    console.log('Search Form Data:', formData);
   };
 
   return <FlightSearch airports={airports} onSearch={handleSearch} />;

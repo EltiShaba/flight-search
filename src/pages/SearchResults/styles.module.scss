@@ -1,0 +1,20 @@
+.errorMsg {
+    font-weight: bold;
+    padding: 20px 40px;
+    background-color: whitesmoke;
+    border-radius: 20px;
+    border: 0.5px solid red;
+    width: fit-content;
+    p {
+        color: red;
+    }
+    a {
+        text-decoration: underline;
+    }
+}
+
+.errorMsgContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

@@ -20,6 +20,7 @@ const DatePicker = ({ selectedDate, id, onChange, placeholder }: DatePickerProps
         selected={selectedDate}
         onChange={(date) => onChange(id, date)}
         placeholderText={placeholder}
+        dateFormat="MM/dd/yyyy"
         minDate={minDate}
         className={`w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 ${
           selectedDate ? '' : 'border-red-500'

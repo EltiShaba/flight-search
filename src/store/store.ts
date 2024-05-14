@@ -2,12 +2,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import tokenSlice from './features/authTokenSlice';
 import flightSearchSlice from './features/flightSearchSlice';
-import FlightSearchResultSlice from './features/flightSearchResultSlice';
+import flightSearchResultSlice from './features/flightSearchResultSlice';
 export const store = configureStore({
   reducer: {
     token: tokenSlice.reducer,
     flightSearch: flightSearchSlice.reducer,
-    flightSearchResult: FlightSearchResultSlice.reducer,
+    flightSearchResult: flightSearchResultSlice.reducer,
   },
 });
 

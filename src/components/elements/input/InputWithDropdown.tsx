@@ -3,7 +3,7 @@ import React, { useState } from "react";
 interface AirlineInputProps {
   value: string;
   setValue: (id: string, value: string) => void;
-  options: string[];
+  options: object[];
   placeHolder: string;
   label: string;
   id: string;
@@ -40,7 +40,7 @@ const InputWithDropdown = ({
         onChange={(e) => setValue(id, e.target.value)}
         placeholder={placeHolder}
         className={`w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 ${
-          !isValid() && "border-red-500" // Add red border if not valid
+          !isValid() && "border-red-500"
         }`}
         onFocus={() => setIsOpen(true)}
         onBlur={() => setTimeout(() => setIsOpen(false), 200)}

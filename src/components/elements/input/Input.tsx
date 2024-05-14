@@ -6,7 +6,7 @@ interface TravelersInputProps {
 }
 
 const Input =  ({ traveler, onChange }: TravelersInputProps) => {
-  const [value, setValue] = useState(traveler[0]); // Initialize value with the first item in traveler array
+  const [value, setValue] = useState(traveler[0]);
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newValue = parseInt(e.target.value);
