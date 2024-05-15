@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Input from "./Input";
 
 interface AirlineInputProps {
   value: string;
@@ -26,22 +27,20 @@ const InputWithDropdown = ({
     setIsOpen(false);
   };
 
-  const isValid = () =>
-    options.some((option) => {
+    const isValid = () =>
+      options.some((option) => {
       return option.name?.toLowerCase() === value.toLowerCase();
     });
 
   return (
     <div className="mt-4">
-      {label}
-      <input
-        type="text"
+      <p className='font-bold'>{label}</p>
+      <Input 
         value={value}
-        onChange={(e) => setValue(id, e.target.value)}
-        placeholder={placeHolder}
-        className={`w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 ${
-          !isValid() && "border-red-500"
-        }`}
+        id={id}
+        setValue={setValue}
+        placeHolder={placeHolder}
+        isValid={isValid}
         onFocus={() => setIsOpen(true)}
         onBlur={() => setTimeout(() => setIsOpen(false), 200)}
       />

@@ -12,6 +12,7 @@ import {
 } from "react-router-dom";
 import { Header} from "./components/Header/Header";
 import {SearchResults} from "./pages/SearchResults/SearchResults";
+import { FareInformation } from "./pages/FareInformation/FareInformation";
 
 const App = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -37,6 +38,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<FlightSearch />} />
           <Route path="/search-results" element={<SearchResults />} />
+          <Route path="/fare-information" element={<FareInformation />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import styles from './styles.module.scss'
 import Modal from '../Modal/Modal';
 import { useSelector } from 'react-redux';
+import { FareInformation } from '../../pages/FareInformation/FareInformation';
+import { Link } from 'react-router-dom';
 
 
 interface Flight {
@@ -44,29 +46,26 @@ const Segments = ({ key, airline, price, flight }: SegmentsResultProps) => {
   };
 
   const handleFlightSelect = () => {
-    // console.log("checking flight", flight)
-    // console.log("checking flight 2", flightData)
-
     // flightData.data.map((data, i) => {
     //   console.log("data 1", data.id)
     //   console.log("data 2", flight.id)
     //   if(data.id === flight.id) {
     //     const amenitiesArray = data.travelerPricings[0].fareDetailsBySegment[0].amenities;
     //     console.log("amenitiesArray",amenitiesArray);
-
     //   }
     // })
+    setSelectedFlight(flight);
   };
 
-  const arrivalTime =  flight.arrival.at ? new Date(flight.arrival.at ).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
-  const departureTime =  flight.departure.at ? new Date(flight.departure.at ).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
+  const arrivalTime =  flight?.arrival.at ? new Date(flight.arrival.at ).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
+  const departureTime =  flight?.departure.at ? new Date(flight.departure.at ).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
 
   return (
     <div key={key} className={styles.card}>
         <div className='flex'>
             <p>Flight nr:</p>
             &nbsp;
-            <p className='font-bold'>{flight.number}</p>
+            <p className='font-bold'>{flight?.number}</p>
         </div>
         <div className='flex'>
             <p>Departure Time:</p>
@@ -81,13 +80,13 @@ const Segments = ({ key, airline, price, flight }: SegmentsResultProps) => {
         <div className='flex'>
             <p>Flight Duration:</p>
             &nbsp;
-            <p className='font-bold'>{flight.duration}</p>
+            <p className='font-bold'>{flight?.duration}</p>
         </div>
         
         <div className='flex'>
             <p>Number of Stops: </p>
             &nbsp;
-            <p className='font-bold'>{flight.numberOfStops}</p>
+            <p className='font-bold'>{flight?.numberOfStops}</p>
         </div>
         
         <div className='flex'>
@@ -105,9 +104,12 @@ const Segments = ({ key, airline, price, flight }: SegmentsResultProps) => {
         <button className={styles.iteneraryDetails} onClick={toggleModal}><p>Itinerary Details</p></button>
         </div>
         <div className='float-right'>
-            <button className='btn' onClick={handleFlightSelect}>Select</button>
+          <Link to="/fare-information" onClick={handleFlightSelect} className='btn'>
+            Select
+          </Link>
         </div>
         {isModalOpen && <Modal flight={flight} onClose={toggleModal} />}
+        {/* {selectedFlight && <FareInformation fares={selectedFlight} />} */}
     </div>
   );
 };

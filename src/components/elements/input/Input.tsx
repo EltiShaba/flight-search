@@ -1,39 +1,48 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-interface TravelersInputProps {
-  traveler: string[];
-  onChange: (value: number) => void;
+interface InputProps {
+  value: string;
+  id: string;
+  setValue: (id: string, value: string) => void;
+  placeHolder: string;
+  isValid: () => boolean;
+  onFocus?: () => void;
+  onBlur?: () => void;
 }
 
-const Input =  ({ traveler, onChange }: TravelersInputProps) => {
-  const [value, setValue] = useState(traveler[0]);
+const Input = ({
+  value,
+  id,
+  setValue,
+  placeHolder,
+  isValid,
+  onFocus,
+  onBlur,
+}: InputProps) => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const newValue = parseInt(e.target.value);
-    if (!isNaN(newValue)) {
-      setValue(newValue);
-      onChange(newValue);
-    }
+  const handleFocus = () => {
+    setIsOpen(true);
+    if (onFocus) onFocus();
+  };
+
+  const handleBlur = () => {
+    setTimeout(() => setIsOpen(false), 200);
+    if (onBlur) onBlur();
   };
 
   return (
-    <div className="mt-4">
-      <label htmlFor="travelers" className="block text-sm font-medium text-gray-700">
-        Type of traveler:
-      </label>
-      <select
-        id="travelers"
-        value={value}
-        onChange={handleChange}
-        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 sm:text-sm"
-      >
-        {travelerType.map((type, index) => (
-          <option key={index} value={type}>
-            {type}
-          </option>
-        ))}
-      </select>
-    </div>
+    <input
+      type="text"
+      value={value}
+      onChange={(e) => setValue(id, e.target.value)}
+      placeholder={placeHolder}
+      className={`w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 ${
+        !isValid() && 'border-red-500'
+      }`}
+      onFocus={handleFocus}
+      onBlur={handleBlur}
+    />
   );
 };
 

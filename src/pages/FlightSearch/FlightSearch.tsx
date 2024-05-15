@@ -30,7 +30,7 @@ const FlightSearch = () => {
 
   const dispatch = useDispatch<AppDispatch>();
 
-  const handleInputChange = (id, value) => {
+  const handleInputChange = (id: string, value: string) => {
     if(id === 'departureDate' || id === 'returnDate') {
       value = new Date(value).toISOString().split('T')[0];
     }
@@ -39,7 +39,9 @@ const FlightSearch = () => {
     })
   }
 
-  const handleSelection = (id, option) => {
+  const handleSelection = (id: string, option: object) => {
+    console.log("id ,", id)
+    console.log("option ,", option)
     if(id === "departureAirport") {
       updateData({
         [id]: option.name,
@@ -55,7 +57,8 @@ const FlightSearch = () => {
     })
   }
 
-  const updateData = useCallback((data) => {
+  const updateData = useCallback((data: object) => {
+    console.log("data", data)
     dispatch(
       setData({
           selectedCabin,
@@ -226,7 +229,7 @@ const FlightSearch = () => {
               selectValue={handleSelection}
               placeHolder="Traveler..."
               options={travelerTypeList}
-              label="Traveler type:"
+              label="Traveler type"
               />
             </div>
             <div className="px-4">

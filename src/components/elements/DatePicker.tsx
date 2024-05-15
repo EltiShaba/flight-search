@@ -4,7 +4,6 @@ import ReactDatePicker, { ReactDatePickerProps } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 interface DatePickerProps extends ReactDatePickerProps {
-//   isValid: boolean;
   placeholder?: string;
   id: string;
   selectedDate: Date | null;

@@ -1,4 +1,3 @@
-// types.ts
 export interface Airport {
   code: string;
   name: string;

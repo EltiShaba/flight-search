@@ -1,16 +1,20 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import styles from './styles.module.scss'
 
 export const Header = (props) => {
   return (
-    <div>
+    <div className={styles.headerContainer}>
         <nav className="p-5">
             <ul className="m-0 p-0 flex justify-center items-center align-center gap-4">
-                <li>
+                <li className='font-bold'>
                     <Link to="/">Home</Link>
                 </li>
-                <li>
+                <li className='font-bold'>
                     <Link to="/search-results">Search Results</Link>
+                </li>
+                <li className='font-bold'>
+                    <Link to="/fare-information">Fare Information</Link>
                 </li>
             </ul>
         </nav>

@@ -1,3 +1,24 @@
+# Flight Search Application
+
+A web application where you can search and book flights depending on the selected criterias.
+
+# Features
+
+- Search for flights based on departure and destination airports
+- Select flight types (One-Way or Return)
+- Choose cabin class and traveler type
+- Date selection with a date picker
+- Dynamic dropdowns for airport suggestions
+
+# Prerequisites
+
+- Node.js (v20.12.2)
+- npm
+
+# Development server
+
+Run `npm run dev` for a dev server. Navigate to http://localhost:5173/. The app will automatically reload if you change any of the source files.
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

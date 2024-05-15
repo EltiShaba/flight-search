@@ -1,4 +1,3 @@
-// src/app/store.ts
 import { configureStore } from '@reduxjs/toolkit';
 import tokenSlice from './features/authTokenSlice';
 import flightSearchSlice from './features/flightSearchSlice';
