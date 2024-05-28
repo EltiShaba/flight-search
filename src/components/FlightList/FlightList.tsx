@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './styles.module.scss';
 import Segements from '../Segments/Segments';
 import { FlightData } from '../../types/types';
@@ -8,7 +8,7 @@ interface FlightSearchResultProps {
   flightData: FlightData;
 }
 const FlightList = ({ flightData }: FlightSearchResultProps) => {   
-
+  console.log("checking flightData", flightData)
   return (
     <>
     {

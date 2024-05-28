@@ -1,4 +1,3 @@
-// DatePicker.tsx
 import React from 'react';
 import ReactDatePicker, { ReactDatePickerProps } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -9,10 +8,9 @@ interface DatePickerProps extends ReactDatePickerProps {
   selectedDate: Date | null;
 }
 
-const DatePicker = ({ selectedDate, id, onChange, placeholder }: DatePickerProps) => {
+export const DatePicker = ({ selectedDate, id, onChange, placeholder }: DatePickerProps) => {
   const currentDate = new Date();
   const minDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
-
   return (
     <div className='px-4'>
       <ReactDatePicker
@@ -29,5 +27,3 @@ const DatePicker = ({ selectedDate, id, onChange, placeholder }: DatePickerProps
     </div>
   );
 };
-
-export default DatePicker;

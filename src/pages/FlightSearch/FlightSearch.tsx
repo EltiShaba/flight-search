@@ -5,18 +5,23 @@ import { fetchAirports } from "../../services/AirportApiService";
 import { useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
 import useDebounce from "../../utils/custom-hooks";
-import DatePicker from "../../components/elements/DatePicker";
+import {DatePicker} from "../../components/elements/DatePicker";
 import InputWithDropdown from "../../components/elements/input/InputWithDropdown";
 import { useDispatch } from "react-redux";
 import { setData } from "../../store/features/flightSearchSlice";
 import { Link } from "react-router-dom";
 import styles from './styles.module.scss'
 
+interface OptionProps{
+    iataCode: string;
+    name: string;
+}
+
 const FlightSearch = () => {
   
   const [flightType, setFlightType] = useState<"oneWay" | "return">("oneWay");
-  const [airlineResponseDeparture, setAirlineResponseDeparture] = useState<string[]>([]);
-  const [airlineResponseDestination, setAirlineResponseDestination] = useState<string[]>([]);
+  const [airlineResponseDeparture, setAirlineResponseDeparture] = useState<object[]>([]);
+  const [airlineResponseDestination, setAirlineResponseDestination] = useState<object[]>([]);
 
   const token = useSelector((state: RootState) => state.token.value);
   const selectedCabin = useSelector((state: RootState) => state.flightSearch.selectedCabin);
@@ -39,9 +44,7 @@ const FlightSearch = () => {
     })
   }
 
-  const handleSelection = (id: string, option: object) => {
-    console.log("id ,", id)
-    console.log("option ,", option)
+  const handleSelection = (id: string, option: OptionProps) => {
     if(id === "departureAirport") {
       updateData({
         [id]: option.name,
@@ -58,7 +61,6 @@ const FlightSearch = () => {
   }
 
   const updateData = useCallback((data: object) => {
-    console.log("data", data)
     dispatch(
       setData({
           selectedCabin,

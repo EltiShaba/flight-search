@@ -25,6 +25,9 @@ export interface FlightData {
     itineraries: {
       segments: object[]
     }[];
+    price: { 
+      total: string 
+    },
     id: string;
   }[];
   dictionaries: {
@@ -54,4 +57,17 @@ export interface GetFlightsProps {
   returnDate?: Date | null;
   selectedCabin: string;
   travelerType: string;
+}
+export interface FlightDataSegments {
+  arrival: {
+    at: string;
+    airport: string;
+  };
+  departure: {
+    at: string;
+    airport: string;
+  };
+  duration: string;
+  number: string;
+  numberOfStops: string;
 }

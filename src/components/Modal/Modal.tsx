@@ -2,14 +2,19 @@ import React from 'react';
 import styles from './styles.module.scss'
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
-
-
+import { FlightDataSegments } from '../../types/types';
 interface ModalProps {
-    flight: any;
+    flight: FlightDataSegments;
     onClose: () => void;
 }
 
+// interface ModalProps {
+//     flight: FlightDataSegments | null;
+//     onClose: () => void;
+//   }
+
 const Modal = ({ flight, onClose }: ModalProps) => {
+    console.log("flight", flight)
     const departureAirport = useSelector((state: RootState) => state.flightSearch.departureAirport);
     const destinationAirport = useSelector((state: RootState) => state.flightSearch.destinationAirport);
 

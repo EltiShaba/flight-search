@@ -1,59 +1,44 @@
 import React, { useState } from 'react';
 import styles from './styles.module.scss'
 import Modal from '../Modal/Modal';
-import { useSelector } from 'react-redux';
-import { FareInformation } from '../../pages/FareInformation/FareInformation';
 import { Link } from 'react-router-dom';
+import { FlightDataSegments } from '../../types/types';
 
-
-interface Flight {
-    number: string;
-    departure: {
-      at: string; 
-    };
-    arrival: {
-      at: string;
-    };
-    duration: string;
-    numberOfStops: number;
+interface Airline {
+  carriers: {
+    [key: string]: string;
   }
-interface SegmentsResultProps {
-    price: number;
-    flight: Flight | null;
-    key?: number;
-    airline: object;
-    
 }
 
-const Segments = ({ key, airline, price, flight }: SegmentsResultProps) => {   
+interface SegmentsResultProps {
+  price: string;
+  flight: FlightDataSegments;
+  key?: number;
+  airline: Airline;
+}
+
+
+const Segments = ({ key, airline, price, flight }: SegmentsResultProps) => {    
 
   const { carriers } = airline;
   const selectedAirline = Object.keys(carriers)[0];
   const operatingAirline = carriers[selectedAirline]
-  const flightData = useSelector(state => state.flightSearchResult);
+  // const flightData = useSelector(state => state.flightSearchResult);
 
-  const [selectedFlight, setSelectedFlight] = useState(null);
+  const [selectedFlight, setSelectedFlight] = useState<FlightDataSegments | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
     const toggleModal = () => {
         setIsModalOpen(!isModalOpen);
     };
   
-  const getPriceColor = (price: number) => {
-    if (price < 100) return 'green';
-    if (price >= 100 && price <= 250) return 'yellow';
+  const getPriceColor = (priceColor: string) => {
+    if (priceColor < '100') return 'green';
+    if (priceColor >= '100' && priceColor <= '250') return 'yellow';
     return 'red';
   };
 
   const handleFlightSelect = () => {
-    // flightData.data.map((data, i) => {
-    //   console.log("data 1", data.id)
-    //   console.log("data 2", flight.id)
-    //   if(data.id === flight.id) {
-    //     const amenitiesArray = data.travelerPricings[0].fareDetailsBySegment[0].amenities;
-    //     console.log("amenitiesArray",amenitiesArray);
-    //   }
-    // })
     setSelectedFlight(flight);
   };
 

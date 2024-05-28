@@ -4,7 +4,10 @@ import Input from "./Input";
 interface AirlineInputProps {
   value: string;
   setValue: (id: string, value: string) => void;
-  options: object[];
+  options: {
+    name: string;
+    iataCode: string;
+  }[];
   placeHolder: string;
   label: string;
   id: string;
